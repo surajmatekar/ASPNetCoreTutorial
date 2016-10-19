@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ASPNetCoreTutorial.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASPNetCoreTutorial
 {
@@ -29,6 +31,11 @@ namespace ASPNetCoreTutorial
         {
             // Add framework services.
             services.AddMvc();
+
+
+            var connection = @"Server=192.168.0.54,1433;Database=HR;User Id=sa;Password=admin@123;";
+            services.AddDbContext<HRDbContext>(options => options.UseSqlServer(connection));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
